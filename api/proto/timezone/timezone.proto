@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+
+package timezone;
+
+import "google/protobuf/empty.proto";
+
+option go_package = "proto;timezone";
+
+service TimezoneService {
+  rpc SetTimezone(SetTimezoneRequest) returns (google.protobuf.Empty);
+  rpc GetTimezone(GetTimezoneRequest) returns (GetTimezoneResponse);
+  rpc DeleteTimezone(DeleteTimezoneRequest) returns (google.protobuf.Empty);
+}
+
+message SetTimezoneRequest {
+  string userId = 1;
+  float latitude = 2;
+  float longitude = 3;
+}
+
+message GetTimezoneRequest {
+  string userId = 1;
+}
+
+message GetTimezoneResponse {
+  Timezone timezone = 1;
+}
+
+message DeleteTimezoneRequest {
+  string userId = 1;
+}
+
+message Timezone {
+  string userId = 1;
+  float latitude = 2;
+  float longitude = 3;
+  int32 diffhout = 4;
+}
